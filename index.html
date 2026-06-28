@@ -5,19 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Advanced Pulmonary Drug Delivery Systems</title>
     
-    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
     
-    <!-- FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    <!-- AOS Animation Library -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     
-    <!-- Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <script>
@@ -77,10 +72,8 @@
 </head>
 <body class="antialiased overflow-x-hidden">
 
-    <!-- Progress Bar -->
     <div id="progress-bar"></div>
 
-    <!-- Sticky Navigation -->
     <nav class="fixed w-full z-50 bg-brand-900/90 backdrop-blur-md border-b border-brand-700 transition-all duration-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-16">
@@ -100,9 +93,7 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
     <section id="home" class="relative min-h-screen flex items-center pt-20 overflow-hidden">
-        <!-- Animated Particles -->
         <div class="absolute inset-0 pointer-events-none">
             <div class="particle w-12 h-12 top-20 left-10" style="animation-delay: 0s;"></div>
             <div class="particle w-8 h-8 top-60 right-20" style="animation-delay: 2s;"></div>
@@ -128,7 +119,6 @@
                 </div>
             </div>
             <div class="hidden md:flex justify-center" data-aos="fade-left" data-aos-duration="1200">
-                <!-- Abstract Lung / Nano Illustration representation -->
                 <div class="relative w-80 h-80 rounded-full border-4 border-brand-300/30 flex items-center justify-center animate-[spin_30s_linear_infinite]">
                     <div class="absolute inset-2 border-4 border-dashed border-brand-400/50 rounded-full animate-[spin_20s_linear_infinite_reverse]"></div>
                     <i class="fa-solid fa-lungs text-9xl text-brand-300 absolute" style="animation: pulse 3s infinite;"></i>
@@ -137,7 +127,6 @@
         </div>
     </section>
 
-    <!-- Introduction Section -->
     <section id="intro" class="py-24 bg-brand-800">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16" data-aos="fade-up">
@@ -165,7 +154,6 @@
         </div>
     </section>
 
-    <!-- PAPER 1: Nanotechnology & Biofilms -->
     <section id="paper1" class="py-24">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="mb-16" data-aos="fade-right">
@@ -174,7 +162,6 @@
                 <p class="text-brand-400">Guo, Y., et al. (2023) • Pharmaceutics</p>
             </div>
 
-            <!-- Context Grid -->
             <div class="grid md:grid-cols-2 gap-12 mb-16">
                 <div data-aos="fade-up">
                     <h3 class="text-xl font-bold mb-4 flex items-center"><i class="fa-solid fa-microscope text-brand-300 mr-3"></i> Background & Objective</h3>
@@ -192,10 +179,8 @@
                 </div>
             </div>
 
-            <!-- Scientific Figures for Paper 1 -->
             <h3 class="text-2xl font-bold mb-8 text-center" data-aos="fade-up">Key Scientific Figures</h3>
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
-                <!-- Fig 1 -->
                 <div class="bg-brand-800 rounded-lg overflow-hidden border border-brand-700" data-aos="zoom-in">
                     <img src="fig1_p1.jpg" alt="Biofilm formation" class="w-full h-48 object-cover cursor-pointer hover:opacity-80 transition bg-white" onclick="openLightbox(this.src)">
                     <div class="p-5">
@@ -204,7 +189,6 @@
                         <p class="text-[10px] text-gray-500 italic">Extracted from Guo et al., 2023</p>
                     </div>
                 </div>
-                <!-- Fig 2 -->
                 <div class="bg-brand-800 rounded-lg overflow-hidden border border-brand-700" data-aos="zoom-in" data-aos-delay="100">
                     <img src="fig2_p1.jpg" alt="Antibiotic Tolerance" class="w-full h-48 object-cover cursor-pointer hover:opacity-80 transition bg-white" onclick="openLightbox(this.src)">
                     <div class="p-5">
@@ -213,7 +197,6 @@
                         <p class="text-[10px] text-gray-500 italic">Extracted from Guo et al., 2023</p>
                     </div>
                 </div>
-                <!-- Fig 3/4 -->
                 <div class="bg-brand-800 rounded-lg overflow-hidden border border-brand-700" data-aos="zoom-in" data-aos-delay="200">
                     <img src="fig3_p1.jpg" alt="Diverse Antibiotic Nanoparticles" class="w-full h-48 object-cover cursor-pointer hover:opacity-80 transition bg-white" onclick="openLightbox(this.src)">
                     <div class="p-5">
@@ -224,7 +207,6 @@
                 </div>
             </div>
 
-            <!-- Advantages & Limitations -->
             <div class="grid md:grid-cols-2 gap-8">
                 <div class="bg-green-900/20 border border-green-800/50 p-6 rounded-lg" data-aos="fade-up">
                     <h4 class="font-bold text-green-400 mb-4"><i class="fa-solid fa-circle-check mr-2"></i> Advantages of Nanocarriers</h4>
@@ -246,7 +228,6 @@
         </div>
     </section>
 
-    <!-- PAPER 2: CFD Modeling -->
     <section id="paper2" class="py-24 bg-brand-800">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="mb-16" data-aos="fade-right">
@@ -277,10 +258,8 @@
                 </div>
             </div>
 
-            <!-- Scientific Figures for Paper 2 -->
             <h3 class="text-2xl font-bold mb-8 text-center" data-aos="fade-up">Simulation & Modeling Figures</h3>
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
-                <!-- Fig 1 CFD -->
                 <div class="bg-brand-900 rounded-lg overflow-hidden border border-brand-700" data-aos="zoom-in">
                     <img src="fig1_p2.jpg" alt="Turbulence Intensity" class="w-full h-48 object-cover cursor-pointer hover:opacity-80 transition bg-white" onclick="openLightbox(this.src)">
                     <div class="p-5">
@@ -289,7 +268,6 @@
                         <p class="text-[10px] text-gray-500 italic">Extracted from Longest & Holbrook, 2012</p>
                     </div>
                 </div>
-                <!-- Fig 2 CFD -->
                 <div class="bg-brand-900 rounded-lg overflow-hidden border border-brand-700" data-aos="zoom-in" data-aos-delay="100">
                     <img src="fig2_p2.jpg" alt="TB Cast" class="w-full h-48 object-cover cursor-pointer hover:opacity-80 transition bg-white" onclick="openLightbox(this.src)">
                     <div class="p-5">
@@ -298,7 +276,6 @@
                         <p class="text-[10px] text-gray-500 italic">Extracted from Longest & Holbrook, 2012</p>
                     </div>
                 </div>
-                <!-- Fig 3 CFD -->
                 <div class="bg-brand-900 rounded-lg overflow-hidden border border-brand-700" data-aos="zoom-in" data-aos-delay="200">
                     <img src="fig3_p2.jpg" alt="ECG Delivery" class="w-full h-48 object-cover cursor-pointer hover:opacity-80 transition bg-white" onclick="openLightbox(this.src)">
                     <div class="p-5">
@@ -309,7 +286,6 @@
                 </div>
             </div>
             
-            <!-- Workflow Diagram -->
             <div class="bg-brand-900 p-8 rounded-xl border border-brand-700 text-center" data-aos="fade-up">
                 <h3 class="text-lg font-bold mb-6">In Silico Optimization Workflow</h3>
                 <div class="flex flex-col md:flex-row items-center justify-center space-y-4 md:space-y-0 md:space-x-4">
@@ -329,7 +305,6 @@
         </div>
     </section>
 
-    <!-- PAPER 3: Spray-Dried Microparticles -->
     <section id="paper3" class="py-24">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="mb-16" data-aos="fade-right">
@@ -355,38 +330,33 @@
                 </div>
             </div>
 
-            <!-- Scientific Figures for Paper 3 -->
             <h3 class="text-2xl font-bold mb-8 text-center" data-aos="fade-up">Key Experimental Figures</h3>
             <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4 mb-16">
-                <!-- Fig 1 -->
                 <div class="bg-brand-800 rounded-lg overflow-hidden border border-brand-700" data-aos="zoom-in">
                     <img src="fig1_p3.jpg" alt="SEM blank" class="w-full h-32 object-cover cursor-pointer hover:opacity-80 transition bg-white" onclick="openLightbox(this.src)">
                     <div class="p-4">
-                        <h4 class="font-bold text-xs mb-1 text-white">Blank Particle SEM</h4>
+                        <h4 class="font-bold text-xs mb-1 text-white">Figure 1: Blank Particle SEM</h4>
                         <p class="text-[11px] text-gray-400">Morphology of blank spray-dried chitosan microparticles showing surface wrinkles.</p>
                     </div>
                 </div>
-                <!-- Fig 2 -->
                 <div class="bg-brand-800 rounded-lg overflow-hidden border border-brand-700" data-aos="zoom-in" data-aos-delay="100">
                     <img src="fig2_p3.jpg" alt="SEM Loaded" class="w-full h-32 object-cover cursor-pointer hover:opacity-80 transition bg-white" onclick="openLightbox(this.src)">
                     <div class="p-4">
-                        <h4 class="font-bold text-xs mb-1 text-white">Loaded Particle SEM</h4>
+                        <h4 class="font-bold text-xs mb-1 text-white">Figure 2: Loaded Particle SEM</h4>
                         <p class="text-[11px] text-gray-400">Altered morphology with spikes as rifampicin drug-to-polymer ratio increases.</p>
                     </div>
                 </div>
-                <!-- Fig 4 -->
                 <div class="bg-brand-800 rounded-lg overflow-hidden border border-brand-700" data-aos="zoom-in" data-aos-delay="200">
-                    <img src="fig4_p3.jpg" alt="XRD Analysis" class="w-full h-32 object-cover cursor-pointer hover:opacity-80 transition bg-white" onclick="openLightbox(this.src)">
+                    <img src="fig3_p3.jpg" alt="XRD Analysis" class="w-full h-32 object-cover cursor-pointer hover:opacity-80 transition bg-white" onclick="openLightbox(this.src)">
                     <div class="p-4">
-                        <h4 class="font-bold text-xs mb-1 text-white">XRD Crystallinity</h4>
+                        <h4 class="font-bold text-xs mb-1 text-white">Figure 3: XRD Crystallinity</h4>
                         <p class="text-[11px] text-gray-400">Proof that spray-drying converts crystalline rifampicin into a highly soluble amorphous state.</p>
                     </div>
                 </div>
-                <!-- Fig 5 -->
                 <div class="bg-brand-800 rounded-lg overflow-hidden border border-brand-700" data-aos="zoom-in" data-aos-delay="300">
-                    <img src="fig5_p3.jpg" alt="Release Profile" class="w-full h-32 object-cover cursor-pointer hover:opacity-80 transition bg-white" onclick="openLightbox(this.src)">
+                    <img src="fig4_p3.jpg" alt="Release Profile" class="w-full h-32 object-cover cursor-pointer hover:opacity-80 transition bg-white" onclick="openLightbox(this.src)">
                     <div class="p-4">
-                        <h4 class="font-bold text-xs mb-1 text-white">In Vitro Release</h4>
+                        <h4 class="font-bold text-xs mb-1 text-white">Figure 4: In Vitro Release</h4>
                         <p class="text-[11px] text-gray-400">Sustained release profile of rifampicin over 24h aiding long-term macrophage targeting.</p>
                     </div>
                 </div>
@@ -394,7 +364,6 @@
         </div>
     </section>
 
-    <!-- Comparison Section -->
     <section id="comparison" class="py-24 bg-brand-800">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16" data-aos="fade-up">
@@ -403,7 +372,6 @@
             </div>
 
             <div class="grid lg:grid-cols-3 gap-8 items-center">
-                <!-- Comparison Table -->
                 <div class="lg:col-span-2 overflow-x-auto" data-aos="fade-right">
                     <table class="w-full text-left border-collapse">
                         <thead>
@@ -449,7 +417,6 @@
                     </table>
                 </div>
 
-                <!-- Radar Chart -->
                 <div class="bg-brand-900 p-6 rounded-xl border border-brand-700" data-aos="fade-left">
                     <h4 class="text-center font-bold text-sm mb-4 text-brand-300">Strategic Focus Comparison</h4>
                     <canvas id="radarChart" height="250"></canvas>
@@ -458,7 +425,6 @@
         </div>
     </section>
 
-    <!-- Discussion Section -->
     <section id="discussion" class="py-24">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16" data-aos="fade-up">
@@ -466,7 +432,6 @@
                 <p class="text-gray-400">How these three studies complement each other in translating pulmonary medicine.</p>
             </div>
 
-            <!-- Flowchart -->
             <div class="flex flex-col md:flex-row justify-between items-center relative">
                 
                 <div class="flow-card relative bg-brand-800 border border-brand-700 p-6 rounded-lg text-center w-64 mb-12 md:mb-0" data-aos="zoom-in" data-aos-delay="0">
@@ -500,7 +465,6 @@
         </div>
     </section>
 
-    <!-- Conclusion Section -->
     <section id="conclusion" class="py-24 bg-brand-800">
         <div class="max-w-4xl mx-auto px-4 text-center">
             <h2 class="text-3xl font-serif font-bold text-white mb-8" data-aos="fade-up">Conclusion & Future Opportunities</h2>
@@ -520,7 +484,6 @@
         </div>
     </section>
 
-    <!-- References Section -->
     <section class="py-16 bg-brand-900 border-t border-brand-700">
         <div class="max-w-4xl mx-auto px-4">
             <h3 class="text-xl font-bold text-gray-300 mb-6"><i class="fa-solid fa-book-open text-brand-300 mr-2"></i> References</h3>
@@ -538,12 +501,10 @@
         </div>
     </section>
 
-    <!-- Lightbox Element -->
     <div id="lightbox" class="lightbox" onclick="closeLightbox()">
         <img id="lightbox-img" src="" alt="Enlarged Figure">
     </div>
 
-    <!-- Scripts -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
         // Initialize AOS
