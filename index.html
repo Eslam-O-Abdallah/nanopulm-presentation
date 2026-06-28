@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Pulmonary Drug Delivery Systems</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    },
+                    colors: {
+                        brand: {
+                            900: '#0A192F', // Dark Navy
+                            800: '#112240',
+                            700: '#233554',
+                            400: '#4DA8DA',
+                            300: '#64FFDA', // Teal/Cyan accent
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body { background-color: #0A192F; color: #E6F1FF; }
+        
+        /* Reading Progress Bar */
+        #progress-bar {
+            position: fixed; top: 0; left: 0; height: 4px; background: #64FFDA; width: 0%; z-index: 100; transition: width 0.1s;
+        }
+
+        /* Nanoparticle floating animation */
+        .particle {
+            position: absolute; border-radius: 50%; background: rgba(100, 255, 218, 0.2);
+            animation: float 15s infinite ease-in-out alternate;
+        }
+        @keyframes float {
+            0% { transform: translateY(0px) translateX(0px); }
+            50% { transform: translateY(-100px) translateX(50px); }
+            100% { transform: translateY(0px) translateX(0px); }
+        }
+
+        /* Nav active state */
+        .nav-active { color: #64FFDA !important; border-bottom: 2px solid #64FFDA; }
+
+        /* Lightbox */
+        .lightbox { display: none; position: fixed; z-index: 999; top: 0; left: 0; width: 100%; height: 100%; background: rgba(10, 25, 47, 0.95); justify-content: center; align-items: center; padding: 20px;}
+        .lightbox img { max-width: 90%; max-height: 90vh; border-radius: 8px; border: 2px solid #64FFDA;}
+        
+        /* Flowchart line */
+        .flow-line::after {
+            content: ''; position: absolute; width: 2px; background: #4DA8DA; top: 100%; left: 50%; height: 2rem; transform: translateX(-50%);
+        }
+        .flow-card:last-child .flow-line::after { display: none; }
+    </style>
+</head>
+<body class="antialiased overflow-x-hidden">
+
+    <div id="progress-bar"></div>
+
+    <nav class="fixed w-full z-50 bg-brand-900/90 backdrop-blur-md border-b border-brand-700 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex-shrink-0 font-serif text-brand-300 font-bold text-xl">
+                    NanoPulm
+                </div>
+                <div class="hidden md:flex space-x-6 text-sm font-semibold text-gray-300">
+                    <a href="#home" class="nav-link hover:text-brand-300 transition-colors">Home</a>
+                    <a href="#intro" class="nav-link hover:text-brand-300 transition-colors">Intro</a>
+                    <a href="#paper1" class="nav-link hover:text-brand-300 transition-colors">Paper 1</a>
+                    <a href="#paper2" class="nav-link hover:text-brand-300 transition-colors">Paper 2</a>
+                    <a href="#paper3" class="nav-link hover:text-brand-300 transition-colors">Paper 3</a>
+                    <a href="#comparison" class="nav-link hover:text-brand-300 transition-colors">Comparison</a>
+                    <a href="#discussion" class="nav-link hover:text-brand-300 transition-colors">Discussion</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <section id="home" class="relative min-h-screen flex items-center pt-20 overflow-hidden">
+        <div class="absolute inset-0 pointer-events-none">
+            <div class="particle w-12 h-12 top-20 left-10" style="animation-delay: 0s;"></div>
+            <div class="particle w-8 h-8 top-60 right-20" style="animation-delay: 2s;"></div>
+            <div class="particle w-16 h-16 bottom-20 left-1/3" style="animation-delay: 4s;"></div>
+            <div class="particle w-10 h-10 top-1/3 right-1/3" style="animation-delay: 1s;"></div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 grid md:grid-cols-2 gap-12 items-center">
+            <div data-aos="fade-right" data-aos-duration="1000">
+                <span class="text-brand-300 font-semibold tracking-wider uppercase text-sm">Scientific Seminar Presentation</span>
+                <h1 class="text-5xl md:text-6xl font-serif font-bold mt-4 mb-6 leading-tight">
+                    Advanced Pulmonary <br> Drug Delivery Systems
+                </h1>
+                <p class="text-xl text-gray-400 mb-8 border-l-4 border-brand-300 pl-4">
+                    Comparative Review of Three Recent Scientific Papers on Nanomedicine, CFD Modeling, and Spray-Dried Microparticles.
+                </p>
+                
+                <div class="bg-brand-800/50 p-6 rounded-lg border border-brand-700 inline-block">
+                    <p class="text-sm text-gray-300"><i class="fa-solid fa-users text-brand-300 w-5"></i> <strong>Students:</strong> Eslam Hassan, Thai Anh</p>
+                    <p class="text-sm text-gray-300 mt-2"><i class="fa-solid fa-university text-brand-300 w-5"></i> <strong>University:</strong> FH Münster</p>
+                    <p class="text-sm text-gray-300 mt-2"><i class="fa-solid fa-book text-brand-300 w-5"></i> <strong>Course:</strong> Aerosols and Nano Technology</p>
+                    <p class="text-sm text-gray-300 mt-2"><i class="fa-regular fa-calendar text-brand-300 w-5"></i> <strong>Date:</strong> 29/6/2026</p>
+                </div>
+            </div>
+            <div class="hidden md:flex justify-center" data-aos="fade-left" data-aos-duration="1200">
+                <div class="relative w-80 h-80 rounded-full border-4 border-brand-300/30 flex items-center justify-center animate-[spin_30s_linear_infinite]">
+                    <div class="absolute inset-2 border-4 border-dashed border-brand-400/50 rounded-full animate-[spin_20s_linear_infinite_reverse]"></div>
+                    <i class="fa-solid fa-lungs text-9xl text-brand-300 absolute" style="animation: pulse 3s infinite;"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="intro" class="py-24 bg-brand-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-3xl font-serif font-bold text-white mb-4">Introduction to Pulmonary Delivery</h2>
+                <div class="h-1 w-24 bg-brand-300 mx-auto rounded"></div>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-brand-900 p-8 rounded-xl border border-brand-700 hover:border-brand-300 transition-colors" data-aos="fade-up" data-aos-delay="100">
+                    <i class="fa-solid fa-wind text-4xl text-brand-300 mb-6"></i>
+                    <h3 class="text-xl font-bold mb-3">Why Inhalation?</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">Direct delivery to the infection site reduces required systemic doses, bypasses first-pass metabolism, and minimizes systemic side effects. Crucial for treating CF, COPD, and Tuberculosis.</p>
+                </div>
+                <div class="bg-brand-900 p-8 rounded-xl border border-brand-700 hover:border-brand-300 transition-colors" data-aos="fade-up" data-aos-delay="200">
+                    <i class="fa-solid fa-shield-virus text-4xl text-brand-300 mb-6"></i>
+                    <h3 class="text-xl font-bold mb-3">Respiratory Barriers</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">The lungs feature formidable defenses: anatomical branching, macrophage phagocytosis, and highly viscoelastic airway mucus (mesh pore size ~200nm) that traps foreign particles.</p>
+                </div>
+                <div class="bg-brand-900 p-8 rounded-xl border border-brand-700 hover:border-brand-300 transition-colors" data-aos="fade-up" data-aos-delay="300">
+                    <i class="fa-solid fa-bacterium text-4xl text-brand-300 mb-6"></i>
+                    <h3 class="text-xl font-bold mb-3">The Biofilm Challenge</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">Accounting for 65% of bacterial infections. Bacteria in EPS matrices face restricted penetration and exhibit a 1000-fold increase in antibiotic resistance, causing chronic intractable infections.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="paper1" class="py-24">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="mb-16" data-aos="fade-right">
+                <span class="bg-brand-300 text-brand-900 px-3 py-1 text-xs font-bold rounded-full mb-3 inline-block">Paper 1</span>
+                <h2 class="text-3xl md:text-4xl font-serif font-bold text-white mb-4">Nanotechnology-Based Drug Delivery Systems to Control Bacterial-Biofilm-Associated Lung Infections</h2>
+                <p class="text-brand-400">Guo, Y., et al. (2023) • Pharmaceutics</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-12 mb-16">
+                <div data-aos="fade-up">
+                    <h3 class="text-xl font-bold mb-4 flex items-center"><i class="fa-solid fa-microscope text-brand-300 mr-3"></i> Background & Objective</h3>
+                    <p class="text-gray-400 mb-4">Chronic lung diseases (like Cystic Fibrosis) result in persistent infections due to mucoid bacterial biofilm formation. The EPS matrix physically protects bacteria from immune systems and antibiotics.</p>
+                    <p class="text-gray-400"><strong>Objective:</strong> To review recent advances in nanoparticulate drug delivery systems designed to bypass airway mucus, penetrate the EPS biomatrix, and eradicate respiratory bacterial biofilms.</p>
+                </div>
+                <div data-aos="fade-up" data-aos-delay="100">
+                    <h3 class="text-xl font-bold mb-4 flex items-center"><i class="fa-solid fa-network-wired text-brand-300 mr-3"></i> Methodology / Strategies</h3>
+                    <ul class="space-y-3 text-gray-400">
+                        <li><i class="fa-solid fa-check text-brand-300 mr-2"></i> <strong>Inorganic NPs:</strong> Ag, Au, and Iron-oxide for ROS generation and membrane disruption.</li>
+                        <li><i class="fa-solid fa-check text-brand-300 mr-2"></i> <strong>Polymeric NPs:</strong> Lipid-based, Chitosan, and Copolymers for electrostatic binding.</li>
+                        <li><i class="fa-solid fa-check text-brand-300 mr-2"></i> <strong>Matrix Degradation:</strong> Enzymes (DNase, Alginate lyase) to thin mucus.</li>
+                        <li><i class="fa-solid fa-check text-brand-300 mr-2"></i> <strong>Signaling Interference:</strong> Modulating Quorum Sensing (QS) and c-di-GMP pathways to force biofilm dispersion.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3 class="text-2xl font-bold mb-8 text-center" data-aos="fade-up">Key Scientific Figures</h3>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+                <div class="bg-brand-800 rounded-lg overflow-hidden border border-brand-700" data-aos="zoom-in">
+                    <img src="fig1_p1.jpg" alt="Biofilm formation" class="w-full h-48 object-cover cursor-pointer hover:opacity-80 transition bg-white" onclick="openLightbox(this.src)">
+                    <div class="p-5">
+                        <h4 class="font-bold text-sm mb-2 text-brand-300">Fig 1: Biofilm Lifecycle in Lungs</h4>
+                        <p class="text-xs text-gray-400 mb-3">Shows airway mucus alteration under pathological conditions (CF/COPD) and the 5-stage lifecycle of bacterial biofilms from attachment to dispersion.</p>
+                        <p class="text-[10px] text-gray-500 italic">Extracted from Guo et al., 2023</p>
+                    </div>
+                </div>
+                <div class="bg-brand-800 rounded-lg overflow-hidden border border-brand-700" data-aos="zoom-in" data-aos-delay="100">
+                    <img src="https://placehold.co/600x400/112240/64FFDA?text=Replace+with+Fig+2" alt="Antibiotic Tolerance" class="w-full h-48 object-cover cursor-pointer hover:opacity-80 transition" onclick="openLightbox(this.src)">
+                    <div class="p-5">
+                        <h4 class="font-bold text-sm mb-2 text-brand-300">Fig 2: Antibiotic Tolerance Mechanisms</h4>
+                        <p class="text-xs text-gray-400 mb-3">Depicts diffusion restriction by EPS, emergence of persistent bacteria in hypoxic/nutrient-deficient inner zones, and specific gene expressions (efflux pumps).</p>
+                        <p class="text-[10px] text-gray-500 italic">Extracted from Guo et al., 2023</p>
+                    </div>
+                </div>
+                <div class="bg-brand-800 rounded-lg overflow-hidden border border-brand-700" data-aos="zoom-in" data-aos-delay="200">
+                    <img src="https://placehold.co/600x400/112240/64FFDA?text=Replace+with+Fig+4" alt="Biofilm Disruption" class="w-full h-48 object-cover cursor-pointer hover:opacity-80 transition" onclick="openLightbox(this.src)">
+                    <div class="p-5">
+                        <h4 class="font-bold text-sm mb-2 text-brand-300">Fig 4: Biofilm Disruption & Dispersion</h4>
+                        <p class="text-xs text-gray-400 mb-3">Outlines the use of biofilm-degradation enzymes (DNase I, Alginate lyase) and active dispersion agents targeting the Quorum Sensing circuitry.</p>
+                        <p class="text-[10px] text-gray-500 italic">Extracted from Guo et al., 2023</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="bg-green-900/20 border border-green-800/50 p-6 rounded-lg" data-aos="fade-up">
+                    <h4 class="font-bold text-green-400 mb-4"><i class="fa-solid fa-circle-check mr-2"></i> Advantages of Nanocarriers</h4>
+                    <ul class="text-sm text-gray-300 space-y-2">
+                        <li>Sub-200nm size easily penetrates mucus mesh pores.</li>
+                        <li>Protects therapeutic payloads from enzymatic degradation.</li>
+                        <li>Stimuli-responsive (pH/ROS) for targeted release.</li>
+                    </ul>
+                </div>
+                <div class="bg-red-900/20 border border-red-800/50 p-6 rounded-lg" data-aos="fade-up" data-aos-delay="100">
+                    <h4 class="font-bold text-red-400 mb-4"><i class="fa-solid fa-triangle-exclamation mr-2"></i> Limitations</h4>
+                    <ul class="text-sm text-gray-300 space-y-2">
+                        <li>Inorganic NPs (Ag) can cause oxidative stress in host organs.</li>
+                        <li>Complex manufacturing and clinical translation hurdles.</li>
+                        <li>Potential for rapid clearance by alveolar macrophages if untargeted.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="paper2" class="py-24 bg-brand-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="mb-16" data-aos="fade-right">
+                <span class="bg-brand-400 text-brand-900 px-3 py-1 text-xs font-bold rounded-full mb-3 inline-block">Paper 2</span>
+                <h2 class="text-3xl md:text-4xl font-serif font-bold text-white mb-4">In Silico Models of Aerosol Delivery to the Respiratory Tract</h2>
+                <p class="text-brand-400">Longest, P. W., & Holbrook, L. T. (2012) • Adv. Drug Delivery Reviews</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-12 mb-16">
+                <div data-aos="fade-up">
+                    <h3 class="text-xl font-bold mb-4 flex items-center"><i class="fa-solid fa-laptop-code text-brand-300 mr-3"></i> Background & Objective</h3>
+                    <p class="text-gray-400 mb-4">While traditional 1-D models estimate regional lung deposition, they cannot capture complex localized physics (spray momentum, turbulence, sub-millimeter hot spots).</p>
+                    <p class="text-gray-400"><strong>Objective:</strong> To demonstrate the superiority of 3-D Computational Fluid Dynamics (CFD) models in understanding aerosol transport and optimizing inhaler device designs from the mouth-throat to the alveolar region.</p>
+                </div>
+                <div data-aos="fade-up" data-aos-delay="100">
+                    <h3 class="text-xl font-bold mb-4 flex items-center"><i class="fa-solid fa-chart-line text-brand-300 mr-3"></i> Key Modeling Findings</h3>
+                    <div class="space-y-4">
+                        <div>
+                            <div class="flex justify-between text-xs mb-1"><span>Inhaler Spray Momentum Reduction</span><span class="text-brand-300">Critical</span></div>
+                            <div class="w-full bg-brand-900 rounded-full h-1.5"><div class="bg-brand-300 h-1.5 rounded-full" style="width: 95%"></div></div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between text-xs mb-1"><span>Enhanced Condensational Growth (ECG) Efficiency</span><span class="text-brand-300">+90%</span></div>
+                            <div class="w-full bg-brand-900 rounded-full h-1.5"><div class="bg-brand-300 h-1.5 rounded-full" style="width: 90%"></div></div>
+                        </div>
+                    </div>
+                    <p class="text-sm text-gray-400 mt-4">CFD proved that using sub-micron particles with warm saturated air (ECG) prevents mouth-throat deposition, growing inside the lungs to 2-3 µm for optimal retention.</p>
+                </div>
+            </div>
+
+            <h3 class="text-2xl font-bold mb-8 text-center" data-aos="fade-up">Simulation & Modeling Figures</h3>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+                <div class="bg-brand-900 rounded-lg overflow-hidden border border-brand-700" data-aos="zoom-in">
+                    <img src="https://placehold.co/600x400/112240/4DA8DA?text=Replace+with+Fig+1" alt="Turbulence CFD" class="w-full h-48 object-cover cursor-pointer hover:opacity-80 transition" onclick="openLightbox(this.src)">
+                    <div class="p-5">
+                        <h4 class="font-bold text-sm mb-2 text-brand-400">Turbulent Kinetic Energy</h4>
+                        <p class="text-xs text-gray-400 mb-3">CFD correlation (R²=0.997) between mouthpiece deposition fraction and average turbulent kinetic energy in softmist inhalers.</p>
+                        <p class="text-[10px] text-gray-500 italic">Extracted from Longest & Holbrook, 2012</p>
+                    </div>
+                </div>
+                <div class="bg-brand-900 rounded-lg overflow-hidden border border-brand-700" data-aos="zoom-in" data-aos-delay="100">
+                    <img src="https://placehold.co/600x400/112240/4DA8DA?text=Replace+with+Fig+2" alt="TB Cast" class="w-full h-48 object-cover cursor-pointer hover:opacity-80 transition" onclick="openLightbox(this.src)">
+                    <div class="p-5">
+                        <h4 class="font-bold text-sm mb-2 text-brand-400">Realistic Tracheobronchial Casts</h4>
+                        <p class="text-xs text-gray-400 mb-3">Validation of 3-D CFD deposition predictions against in vitro experimental data over a range of particle sizes within the TB tree.</p>
+                        <p class="text-[10px] text-gray-500 italic">Extracted from Longest & Holbrook, 2012</p>
+                    </div>
+                </div>
+                <div class="bg-brand-900 rounded-lg overflow-hidden border border-brand-700" data-aos="zoom-in" data-aos-delay="200">
+                    <img src="https://placehold.co/600x400/112240/4DA8DA?text=Replace+with+Fig+4" alt="ECG Delivery" class="w-full h-48 object-cover cursor-pointer hover:opacity-80 transition" onclick="openLightbox(this.src)">
+                    <div class="p-5">
+                        <h4 class="font-bold text-sm mb-2 text-brand-400">Enhanced Condensational Growth</h4>
+                        <p class="text-xs text-gray-400 mb-3">Demonstrates sub-micron aerosols bypassing the throat and growing to 2.4-3.3 µm in the supersaturated lower airways for near complete retention.</p>
+                        <p class="text-[10px] text-gray-500 italic">Extracted from Longest & Holbrook, 2012</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="bg-brand-900 p-8 rounded-xl border border-brand-700 text-center" data-aos="fade-up">
+                <h3 class="text-lg font-bold mb-6">In Silico Optimization Workflow</h3>
+                <div class="flex flex-col md:flex-row items-center justify-center space-y-4 md:space-y-0 md:space-x-4">
+                    <div class="bg-brand-800 p-3 rounded text-sm text-brand-300 font-semibold border border-brand-700">Define Geometry (Patient/Cast)</div>
+                    <i class="fa-solid fa-arrow-right text-gray-500 hidden md:block"></i>
+                    <i class="fa-solid fa-arrow-down text-gray-500 block md:hidden"></i>
+                    <div class="bg-brand-800 p-3 rounded text-sm text-brand-300 font-semibold border border-brand-700">Navier-Stokes & Turbulence</div>
+                    <i class="fa-solid fa-arrow-right text-gray-500 hidden md:block"></i>
+                    <i class="fa-solid fa-arrow-down text-gray-500 block md:hidden"></i>
+                    <div class="bg-brand-800 p-3 rounded text-sm text-brand-300 font-semibold border border-brand-700">Particle Tracking & Phase Coupling</div>
+                    <i class="fa-solid fa-arrow-right text-gray-500 hidden md:block"></i>
+                    <i class="fa-solid fa-arrow-down text-gray-500 block md:hidden"></i>
+                    <div class="bg-brand-800 p-3 rounded text-sm text-brand-300 font-semibold border border-brand-700">Device Optimization</div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="paper3" class="py-24">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="mb-16" data-aos="fade-right">
+                <span class="bg-white text-brand-900 px-3 py-1 text-xs font-bold rounded-full mb-3 inline-block">Paper 3</span>
+                <h2 class="text-3xl md:text-4xl font-serif font-bold text-white mb-4">Inhalable Chitosan Microparticles: A Spray-Drying Approach</h2>
+                <p class="text-brand-400">Ahmad, M. S., et al. (2026) • ACS Omega</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-12 mb-16">
+                <div data-aos="fade-up">
+                    <h3 class="text-xl font-bold mb-4 flex items-center"><i class="fa-solid fa-lungs-virus text-brand-300 mr-3"></i> The Tuberculosis Problem</h3>
+                    <p class="text-gray-400 mb-4">TB requires long-term, high-dose oral therapy. Rifampicin has poor bioavailability orally. Targeting the alveolar macrophages where <em>M. tuberculosis</em> replicates is critical.</p>
+                    <p class="text-gray-400"><strong>Objective:</strong> Formulate carrier-free, spray-dried chitosan microparticles to achieve a high rifampicin payload with optimal aerodynamic performance for deep lung deposition.</p>
+                </div>
+                <div data-aos="fade-up" data-aos-delay="100">
+                    <h3 class="text-xl font-bold mb-4 flex items-center"><i class="fa-solid fa-flask-vial text-brand-300 mr-3"></i> Results & Clinical Relevance</h3>
+                    <ul class="space-y-3 text-gray-400">
+                        <li><i class="fa-solid fa-check text-brand-300 mr-2"></i> <strong>Optimized Size:</strong> Generated particles of 2-6 µm, ideal for macrophage phagocytosis.</li>
+                        <li><i class="fa-solid fa-check text-brand-300 mr-2"></i> <strong>Aerosolization:</strong> Fine Particle Fraction (FPF < 3µm) reached 51.5%, highly efficient for DPIs.</li>
+                        <li><i class="fa-solid fa-check text-brand-300 mr-2"></i> <strong>Sustained Release:</strong> Anomalous non-Fickian diffusion ensuring prolonged local antibacterial activity.</li>
+                        <li><i class="fa-solid fa-check text-brand-300 mr-2"></i> <strong>In Vivo:</strong> Intratracheal instillation showed much higher local lung retention vs oral tablets.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3 class="text-2xl font-bold mb-8 text-center" data-aos="fade-up">Key Experimental Figures</h3>
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4 mb-16">
+                <div class="bg-brand-800 rounded-lg overflow-hidden border border-brand-700" data-aos="zoom-in">
+                    <img src="https://placehold.co/600x400/112240/FFFFFF?text=Replace+with+Fig+1" alt="SEM blank" class="w-full h-32 object-cover cursor-pointer hover:opacity-80 transition" onclick="openLightbox(this.src)">
+                    <div class="p-4">
+                        <h4 class="font-bold text-xs mb-1 text-white">Blank Particle SEM</h4>
+                        <p class="text-[11px] text-gray-400">Morphology of blank spray-dried chitosan microparticles showing surface wrinkles.</p>
+                    </div>
+                </div>
+                <div class="bg-brand-800 rounded-lg overflow-hidden border border-brand-700" data-aos="zoom-in" data-aos-delay="100">
+                    <img src="https://placehold.co/600x400/112240/FFFFFF?text=Replace+with+Fig+2" alt="SEM Loaded" class="w-full h-32 object-cover cursor-pointer hover:opacity-80 transition" onclick="openLightbox(this.src)">
+                    <div class="p-4">
+                        <h4 class="font-bold text-xs mb-1 text-white">Loaded Particle SEM</h4>
+                        <p class="text-[11px] text-gray-400">Altered morphology with spikes as rifampicin drug-to-polymer ratio increases.</p>
+                    </div>
+                </div>
+                <div class="bg-brand-800 rounded-lg overflow-hidden border border-brand-700" data-aos="zoom-in" data-aos-delay="200">
+                    <img src="https://placehold.co/600x400/112240/FFFFFF?text=Replace+with+Fig+4" alt="XRD Analysis" class="w-full h-32 object-cover cursor-pointer hover:opacity-80 transition" onclick="openLightbox(this.src)">
+                    <div class="p-4">
+                        <h4 class="font-bold text-xs mb-1 text-white">XRD Crystallinity</h4>
+                        <p class="text-[11px] text-gray-400">Proof that spray-drying converts crystalline rifampicin into a highly soluble amorphous state.</p>
+                    </div>
+                </div>
+                <div class="bg-brand-800 rounded-lg overflow-hidden border border-brand-700" data-aos="zoom-in" data-aos-delay="300">
+                    <img src="https://placehold.co/600x400/112240/FFFFFF?text=Replace+with+Fig+5" alt="Release Profile" class="w-full h-32 object-cover cursor-pointer hover:opacity-80 transition" onclick="openLightbox(this.src)">
+                    <div class="p-4">
+                        <h4 class="font-bold text-xs mb-1 text-white">In Vitro Release</h4>
+                        <p class="text-[11px] text-gray-400">Sustained release profile of rifampicin over 24h aiding long-term macrophage targeting.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="comparison" class="py-24 bg-brand-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-3xl font-serif font-bold text-white mb-4">Comparison Dashboard</h2>
+                <div class="h-1 w-24 bg-brand-300 mx-auto rounded"></div>
+            </div>
+
+            <div class="grid lg:grid-cols-3 gap-8 items-center">
+                <div class="lg:col-span-2 overflow-x-auto" data-aos="fade-right">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr class="border-b border-brand-700 text-brand-300 text-sm">
+                                <th class="p-4 font-semibold">Parameter</th>
+                                <th class="p-4 font-semibold">Paper 1 (Nanotech)</th>
+                                <th class="p-4 font-semibold">Paper 2 (CFD)</th>
+                                <th class="p-4 font-semibold">Paper 3 (Microparticles)</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-sm text-gray-300">
+                            <tr class="border-b border-brand-700/50 hover:bg-brand-900/50 transition">
+                                <td class="p-4 font-bold text-white">Core Technology</td>
+                                <td class="p-4">Nanocarriers (Ag, Au, Lipids)</td>
+                                <td class="p-4">3D Computational Modeling</td>
+                                <td class="p-4">Spray-Drying Fabrication</td>
+                            </tr>
+                            <tr class="border-b border-brand-700/50 hover:bg-brand-900/50 transition">
+                                <td class="p-4 font-bold text-white">Target Dimension</td>
+                                <td class="p-4">Mucus / EPS Matrix (< 200nm)</td>
+                                <td class="p-4">Airways (Mouth to Alveoli)</td>
+                                <td class="p-4">Macrophages (2 - 6 µm)</td>
+                            </tr>
+                            <tr class="border-b border-brand-700/50 hover:bg-brand-900/50 transition">
+                                <td class="p-4 font-bold text-white">Clinical Focus</td>
+                                <td class="p-4">CF / COPD Biofilms</td>
+                                <td class="p-4">Inhaler Optimization</td>
+                                <td class="p-4">Tuberculosis</td>
+                            </tr>
+                            <tr class="border-b border-brand-700/50 hover:bg-brand-900/50 transition">
+                                <td class="p-4 font-bold text-white">Major Advantage</td>
+                                <td class="p-4">Disrupts biofilm defenses</td>
+                                <td class="p-4">Predicts local hot spots</td>
+                                <td class="p-4">High payload, DPI ready</td>
+                            </tr>
+                            <tr class="hover:bg-brand-900/50 transition">
+                                <td class="p-4 font-bold text-white">Limitations</td>
+                                <td class="p-4">Systemic toxicity risks</td>
+                                <td class="p-4">Requires clinical validation</td>
+                                <td class="p-4">Agglomeration risk</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="bg-brand-900 p-6 rounded-xl border border-brand-700" data-aos="fade-left">
+                    <h4 class="text-center font-bold text-sm mb-4 text-brand-300">Strategic Focus Comparison</h4>
+                    <canvas id="radarChart" height="250"></canvas>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="discussion" class="py-24">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-3xl font-serif font-bold text-white mb-4">Discussion: The Progression Path</h2>
+                <p class="text-gray-400">How these three studies complement each other in translating pulmonary medicine.</p>
+            </div>
+
+            <div class="flex flex-col md:flex-row justify-between items-center relative">
+                
+                <div class="flow-card relative bg-brand-800 border border-brand-700 p-6 rounded-lg text-center w-64 mb-12 md:mb-0" data-aos="zoom-in" data-aos-delay="0">
+                    <i class="fa-solid fa-laptop-code text-3xl text-brand-300 mb-3"></i>
+                    <h4 class="font-bold text-sm mb-2">1. In Silico Modeling</h4>
+                    <p class="text-xs text-gray-400">Paper 2 establishes the aerodynamic baseline and predicts ideal particle sizes for lung retention.</p>
+                    <div class="hidden md:block absolute top-1/2 -right-10 w-10 h-0.5 bg-brand-400"></div>
+                </div>
+
+                <div class="flow-card relative bg-brand-800 border border-brand-700 p-6 rounded-lg text-center w-64 mb-12 md:mb-0" data-aos="zoom-in" data-aos-delay="100">
+                    <i class="fa-solid fa-atom text-3xl text-brand-300 mb-3"></i>
+                    <h4 class="font-bold text-sm mb-2">2. Nanocarrier Design</h4>
+                    <p class="text-xs text-gray-400">Paper 1 defines the functional chemistry needed to penetrate mucus and dissolve biofilms.</p>
+                    <div class="hidden md:block absolute top-1/2 -right-10 w-10 h-0.5 bg-brand-400"></div>
+                </div>
+
+                <div class="flow-card relative bg-brand-800 border border-brand-700 p-6 rounded-lg text-center w-64 mb-12 md:mb-0" data-aos="zoom-in" data-aos-delay="200">
+                    <i class="fa-solid fa-spray-can-sparkles text-3xl text-brand-300 mb-3"></i>
+                    <h4 class="font-bold text-sm mb-2">3. Scalable Fabrication</h4>
+                    <p class="text-xs text-gray-400">Paper 3 uses spray-drying to convert theories into tangible, high-payload DPI microparticles.</p>
+                    <div class="hidden md:block absolute top-1/2 -right-10 w-10 h-0.5 bg-brand-400"></div>
+                </div>
+
+                <div class="flow-card relative bg-brand-800 border border-green-700 p-6 rounded-lg text-center w-64" data-aos="zoom-in" data-aos-delay="300">
+                    <i class="fa-solid fa-heart-pulse text-3xl text-green-400 mb-3"></i>
+                    <h4 class="font-bold text-sm text-green-400 mb-2">4. Clinical Efficacy</h4>
+                    <p class="text-xs text-gray-400">The culmination: high lung retention, eradicated biofilms, and cured pulmonary infections.</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="conclusion" class="py-24 bg-brand-800">
+        <div class="max-w-4xl mx-auto px-4 text-center">
+            <h2 class="text-3xl font-serif font-bold text-white mb-8" data-aos="fade-up">Conclusion & Future Opportunities</h2>
+            
+            <div class="grid md:grid-cols-2 gap-6 text-left mb-12">
+                <div class="bg-brand-900 p-6 rounded-lg border-l-4 border-brand-300" data-aos="fade-up">
+                    <h4 class="font-bold mb-2">Major Takeaways</h4>
+                    <p class="text-sm text-gray-400">Inhalation provides a direct route for treating severe respiratory infections. Successful treatment requires bypassing mechanical (mucus) and biological (biofilm/macrophage) barriers simultaneously.</p>
+                </div>
+                <div class="bg-brand-900 p-6 rounded-lg border-l-4 border-brand-400" data-aos="fade-up" data-aos-delay="100">
+                    <h4 class="font-bold mb-2">Research Gaps</h4>
+                    <p class="text-sm text-gray-400">While CFD is precise, in vivo validations remain scarce. Nanoparticles show promise in vitro, but long-term pulmonary toxicity (e.g., metal accumulation) requires extensive clinical trials.</p>
+                </div>
+            </div>
+
+            <h1 class="text-5xl font-serif font-bold text-brand-300 mt-16 animate-pulse" data-aos="fade-up">Thank You</h1>
+        </div>
+    </section>
+
+    <section class="py-16 bg-brand-900 border-t border-brand-700">
+        <div class="max-w-4xl mx-auto px-4">
+            <h3 class="text-xl font-bold text-gray-300 mb-6"><i class="fa-solid fa-book-open text-brand-300 mr-2"></i> References</h3>
+            <ul class="space-y-4 text-sm text-gray-400">
+                <li class="pl-4 border-l-2 border-brand-400">
+                    Ahmad, M. S., Sabei, F. Y., Safhi, A. Y., Salawi, A., Alsalhi, A., Hanbashi, A., Niazi, Z. R., & Shah, K. U. (2026). Inhalable Chitosan Microparticles: A Spray-Drying Approach for Enhanced Pulmonary Delivery of Rifampicin. <em>ACS Omega</em>, 11, 6003-6013.
+                </li>
+                <li class="pl-4 border-l-2 border-brand-400">
+                    Guo, Y., Mao, Z., Ran, F., Sun, J., Zhang, J., Chai, G., & Wang, J. (2023). Nanotechnology-Based Drug Delivery Systems to Control Bacterial-Biofilm-Associated Lung Infections. <em>Pharmaceutics</em>, 15(11), 2582.
+                </li>
+                <li class="pl-4 border-l-2 border-brand-400">
+                    Longest, P. W., & Holbrook, L. T. (2012). In Silico Models of Aerosol Delivery to the Respiratory Tract - Development and Applications. <em>Advanced Drug Delivery Reviews</em>, 64(4), 296-311.
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+        <img id="lightbox-img" src="" alt="Enlarged Figure">
+    </div>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Initialize AOS
+        AOS.init({
+            once: true,
+            offset: 50,
+            duration: 800
+        });
+
+        // Reading Progress Bar
+        window.onscroll = function() {
+            let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            let scrolled = (winScroll / height) * 100;
+            document.getElementById("progress-bar").style.width = scrolled + "%";
+        };
+
+        // Smooth Scroll & Active Nav State
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Lightbox Functions
+        function openLightbox(src) {
+            document.getElementById('lightbox-img').src = src;
+            document.getElementById('lightbox').style.display = 'flex';
+        }
+        function closeLightbox() {
+            document.getElementById('lightbox').style.display = 'none';
+        }
+
+        // Radar Chart Initialization
+        document.addEventListener("DOMContentLoaded", function() {
+            const ctx = document.getElementById('radarChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'radar',
+                data: {
+                    labels: ['Mucus Penetration', 'Biofilm Disruption', 'Computational Focus', 'Drug Payload', 'Aerodynamic Performance', 'In Vivo Validation'],
+                    datasets: [
+                        {
+                            label: 'Paper 1 (Nanotech)',
+                            data: [90, 95, 20, 40, 50, 60],
+                            backgroundColor: 'rgba(100, 255, 218, 0.2)',
+                            borderColor: 'rgba(100, 255, 218, 1)',
+                            pointBackgroundColor: 'rgba(100, 255, 218, 1)'
+                        },
+                        {
+                            label: 'Paper 2 (CFD)',
+                            data: [50, 20, 100, 30, 95, 30],
+                            backgroundColor: 'rgba(77, 168, 218, 0.2)',
+                            borderColor: 'rgba(77, 168, 218, 1)',
+                            pointBackgroundColor: 'rgba(77, 168, 218, 1)'
+                        },
+                        {
+                            label: 'Paper 3 (Microparticles)',
+                            data: [60, 40, 10, 95, 85, 90],
+                            backgroundColor: 'rgba(255, 255, 255, 0.2)',
+                            borderColor: 'rgba(255, 255, 255, 1)',
+                            pointBackgroundColor: 'rgba(255, 255, 255, 1)'
+                        }
+                    ]
+                },
+                options: {
+                    scales: {
+                        r: {
+                            angleLines: { color: 'rgba(255, 255, 255, 0.1)' },
+                            grid: { color: 'rgba(255, 255, 255, 0.1)' },
+                            pointLabels: { color: '#8892b0', font: { size: 10, family: 'Inter' } },
+                            ticks: { display: false }
+                        }
+                    },
+                    plugins: {
+                        legend: { labels: { color: '#E6F1FF' }, position: 'bottom' }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
